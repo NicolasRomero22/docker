@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mysql_biblioteca:
+    image: mysql:latest
+    container_name: BDLinea
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: biblioteca
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./ biblioteca.sql:/docker-entrypoint-initdb.d/ biblioteca.sql  
+
+volumes:
+  mysql_data:
